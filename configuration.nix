@@ -179,6 +179,7 @@
     gnome-tweaks
     pika-backup
     borgbackup
+    localsend
     jetbrains-mono
     inputs.zen-browser.packages."${system}".specific
     kitty
