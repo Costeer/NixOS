@@ -178,7 +178,9 @@
     vesktop
     mangohud
     gnome-tweaks
+    pika-backup
     jetbrains-mono
+    inputs.zen-browser.packages."${system}".specific
     kitty
     warp-terminal
     alacritty
