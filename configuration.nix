@@ -59,6 +59,14 @@
   ########## Nvidia Drivers
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
+  ########## Flatpacks
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
   ##########
 
   # Configure console keymap
@@ -144,7 +152,7 @@
     cmatrix
     unzip
     btop
-    oneko
+    zenith-nvidia
     nodejs_22
     #-Fetch-Scripts
     microfetch
@@ -165,6 +173,8 @@
     papirus-folders
     spicetify-cli
     #---Applications---#
+    flatpak
+    gnome.gnome-software
     vesktop
     mangohud
     gnome-tweaks
