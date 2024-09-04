@@ -145,7 +145,6 @@
     vim 
     eza
     zoxide
-    thefuck
     wget
     git
     asciiquarium-transparent
@@ -179,10 +178,10 @@
     mangohud
     gnome-tweaks
     pika-backup
+    borgbackup
     jetbrains-mono
     inputs.zen-browser.packages."${system}".specific
     kitty
-    warp-terminal
     alacritty
     obsidian
     krita
