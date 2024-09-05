@@ -56,6 +56,24 @@
     variant = "";
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" 
+    ];
+    dates = "09:00";
+    randomizedDelaySec = "45min";
+  };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged 
+    # programs here, NOT in environment.systemPackages
+  ];
+
   ########## Nvidia Drivers
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
@@ -133,7 +151,7 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
-   
+ 
   #----------------------------------------------------------------------------------------------#
 
   
@@ -148,6 +166,7 @@
     wget
     git
     asciiquarium-transparent
+    protontricks
     cmatrix
     unzip
     btop
