@@ -77,6 +77,7 @@
   ########## Nvidia Drivers
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.open = true;
   ########## Flatpacks
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
@@ -120,6 +121,11 @@
     #  thunderbird
     ];
   };
+
+  services = {
+    flatpak.enable = true;
+  };
+
   
   home-manager = {
     # also pass inputs to home-manager modules
@@ -192,7 +198,7 @@
     spicetify-cli
     #---Applications---#
     flatpak
-    gnome.gnome-software
+    gnome-software
     vesktop
     mangohud
     gnome-tweaks
