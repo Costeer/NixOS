@@ -56,17 +56,6 @@
     variant = "";
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" 
-    ];
-    dates = "09:00";
-    randomizedDelaySec = "45min";
-  };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -78,13 +67,17 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.open = true;
-  ########## Flatpacks
+  
+  ########## Flatpaks
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
+  };
+  services = {
+    flatpak.enable = true;
   };
   ##########
 
@@ -122,9 +115,6 @@
     ];
   };
 
-  services = {
-    flatpak.enable = true;
-  };
 
   
   home-manager = {
@@ -134,12 +124,25 @@
       "costeer" = import ./home.nix;
     };
   };
+  #-N.S.-------------------------Nix-Settings----------------------------------------------------#
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   #-E.F.'.s.---------------------Experimental-Settings-------------------------------------------#
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   #-E.V.'.s.---------------------Enviroment-Variables--------------------------------------------#
+
+  environment.sessionVariables = {
+    #If your cursor becomes invisible
+    no_hardware_cursors = "true";
+    #Hint electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
+  };
 
   #-P.T.N.E.---------------------Programs-That-Need-Enabeling------------------------------------#
 
@@ -154,10 +157,31 @@
   nixpkgs.config.allowUnfree = true;
 
   ###---Steam-n'-Stuff---###
-  programs.steam.enable = true;
+  
+  programs.steam = {
+     enable = true;
+     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
- 
+
+  ###---Hyperland---###
+  #programs.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true;
+  #}; 
+  xdg.portal.enable = true;
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
   #----------------------------------------------------------------------------------------------#
 
   
@@ -188,10 +212,18 @@
     #---Customization---#
     bibata-cursors
     bibata-cursors-translucent
+    nwg-look
     adw-gtk3
     gnome-extension-manager
-    rofi-wayland-unwrapped
+    (pkgs.waybar.overrideAttrs (oldAttrs: {
+       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+     })
+    )
+    dunst
+    hyprnome
+    rofi-wayland
     onagre
+    lemurs
     wlogout
     papirus-icon-theme
     papirus-folders
@@ -200,10 +232,9 @@
     flatpak
     gnome-software
     vesktop
+    kdePackages.kcolorpicker
     mangohud
     gnome-tweaks
-    pika-backup
-    borgbackup
     localsend
     jetbrains-mono
     inputs.zen-browser.packages."${system}".specific
