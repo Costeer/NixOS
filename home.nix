@@ -25,8 +25,11 @@
     ./apps/fastfetch.nix
     ./apps/kitty.nix
     #./apps/rofi.nix
-  ];
   ####-----------------------####
+  
+
+  ];
+  
 
   programs.git = {
     enable = true;

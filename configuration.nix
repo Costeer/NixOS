@@ -79,6 +79,15 @@
   services = {
     flatpak.enable = true;
   };
+
+  services.flatpak.update.onActivation = true;
+
+  services.flatpak.packages = [
+    { appId = "com.brave.Browser"; origin = "flathub";  }
+    "com.obsproject.Studio"
+    "im.riot.Riot"
+  ];
+
   ##########
 
   # Configure console keymap

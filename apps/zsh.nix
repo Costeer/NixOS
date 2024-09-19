@@ -36,12 +36,13 @@
       AGKOZAK_COLORS_CMD_EXEC_TIME='yellow'
       AGKOZAK_COLORS_PROMPT_CHAR='magenta'
       AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' )
-      AGKOZAK_MULTILINE=0
+      AGKOZAK_MULTILINE=1
+      AGKOZAK_BLANK_LINES=1
       AGKOZAK_PROMPT_CHAR=( ❯ ❯ ❮ )
       microfetch
-      eval $(thefuck --alias)
-      
-      '';
+      #eval $(thefuck --alias)
+      #
+      #'';
 
     plugins = with pkgs; [
       {
