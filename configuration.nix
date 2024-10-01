@@ -8,7 +8,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./programs.nix
       inputs.home-manager.nixosModules.default
+      inputs.spicetify-nix.nixosModules.default
     ];
 
   # Bootloader.
@@ -45,7 +47,7 @@
   
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -83,9 +85,11 @@
   services.flatpak.update.onActivation = true;
 
   services.flatpak.packages = [
-    { appId = "com.brave.Browser"; origin = "flathub";  }
-    "com.obsproject.Studio"
-    "im.riot.Riot"
+#    { appId = "com.brave.Browser"; origin = "flathub";  }
+#    "com.obsproject.Studio"
+#    "im.riot.Riot"
+
+
   ];
 
   ##########
@@ -153,108 +157,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  #-P.T.N.E.---------------------Programs-That-Need-Enabeling------------------------------------#
-
-  # Zsh  
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  ###---Steam-n'-Stuff---###
-  
-  programs.steam = {
-     enable = true;
-     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-  
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
-
-  ###---Hyperland---###
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #}; 
-  xdg.portal.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  programs.hyprland = {
-    enable = true;
-    # set the flake package
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
-  #----------------------------------------------------------------------------------------------#
-
-  
-
-  environment.systemPackages = with pkgs; [
-  #----------------------Programs------------------------------------#
-    
-    #---Terminal-Stuff---#
-    vim 
-    eza
-    zoxide
-    wget
-    git
-    asciiquarium-transparent
-    protontricks
-    cmatrix
-    unzip
-    btop
-    zenith-nvidia
-    nodejs_22
-    #-Fetch-Scripts
-    microfetch
-    nitch
-    maxfetch
-    fastfetch
-    nerdfetch
-    afetch
-    #---Customization---#
-    bibata-cursors
-    bibata-cursors-translucent
-    nwg-look
-    adw-gtk3
-    gnome-extension-manager
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-     })
-    )
-    dunst
-    hyprnome
-    rofi-wayland
-    onagre
-    lemurs
-    wlogout
-    papirus-icon-theme
-    papirus-folders
-    spicetify-cli
-    #---Applications---#
-    flatpak
-    gnome-software
-    vesktop
-    kdePackages.kcolorpicker
-    mangohud
-    gnome-tweaks
-    localsend
-    jetbrains-mono
-    inputs.zen-browser.packages."${system}".specific
-    kitty
-    alacritty
-    obsidian
-    krita
-    lutris-unwrapped
-    fragments
-    spotify
-  ];
   #------------------------------------------------------------------#
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
