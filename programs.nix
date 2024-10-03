@@ -32,10 +32,10 @@
     nwg-look
     adw-gtk3
     gnome-extension-manager
-    (pkgs.waybar.overrideAttrs (oldAttrs: {
-       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-     })
-    )
+    #(pkgs.waybar.overrideAttrs (oldAttrs: {
+    #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    # })
+    #)
     dunst
     #hyprnome
     #where-is-my-sddm-theme
@@ -50,10 +50,19 @@
     
     #---Applications---#
     flatpak
+    gamescope
+    hyprshot
+    gnome-disk-utility
     gnome-software
+    gnome-text-editor
+    gedit
+    gnome-calculator
+    nautilus
+    hyprpicker
     vesktop
     #kdePackages.kcolorpicker
     mangohud
+    #gamescope
     gnome-tweaks
     localsend
     jetbrains-mono
@@ -96,13 +105,9 @@
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
-  ###---Hyperland---###
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #}; 
+  ###---Hyperland---### 
   xdg.portal.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   programs.hyprland = {
     enable = true;
     # set the flake package

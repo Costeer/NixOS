@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./programs.nix
+      ./apps/catppuccin.nix
       inputs.home-manager.nixosModules.default
       inputs.spicetify-nix.nixosModules.default
     ];
@@ -16,7 +17,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -50,7 +51,7 @@
   
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -158,6 +159,11 @@
   };
 
   #------------------------------------------------------------------#
+  
+  catppuccin.flavor = "mocha";
+  catppuccin.enable = true;
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

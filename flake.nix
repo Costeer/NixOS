@@ -10,6 +10,8 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
+    catppuccin.url = "github:catppuccin/nix";
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,12 +26,26 @@
   };
 
   ###---OUT---####
-  outputs = { self, nixpkgs, nix-flatpak, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, catppuccin, ... }@inputs: {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
         
+        catppuccin.nixosModules.catppuccin
+        # if you use home-manager
+        #home-manager.nixosModules.home-manager
+
+
+        #{
+        # if you use home-manager
+        #home-manager.users.pepperjack = {
+        #  imports = [
+        #    ./home.nix
+        #    catppuccin.homeManagerModules.catppuccin
+        #  ];
+        #};
+        #}
         inputs.home-manager.nixosModules.default
         
         nix-flatpak.nixosModules.nix-flatpak
