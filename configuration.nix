@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./programs.nix
       ./apps/catppuccin.nix
+      ./apps/plymoututh.nix
       inputs.home-manager.nixosModules.default
       inputs.spicetify-nix.nixosModules.default
     ];
@@ -17,6 +18,29 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+
+    plymouth = {
+      enable = true;
+    };
+
+    # Enable "Silent Boot"
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
+    # Hide the OS choice for bootloaders.
+    # It's still possible to open the bootloader list by pressing any key
+    # It will just not appear on screen unless a key is pressed
+    # loader.timeout = 0;
+  };
   
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -160,9 +184,6 @@
 
   #------------------------------------------------------------------#
   
-  catppuccin.flavor = "mocha";
-  catppuccin.enable = true;
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
