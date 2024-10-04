@@ -56,6 +56,7 @@
     gnome-software
     gnome-text-editor
     gedit
+    obs-studio
     gnome-calculator
     nautilus
     hyprpicker
@@ -72,6 +73,7 @@
     obsidian
     krita
     lutris-unwrapped
+    vlc
     fragments
     blender
     #virtualboxWithExtpack

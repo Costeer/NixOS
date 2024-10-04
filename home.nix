@@ -23,7 +23,7 @@
   imports = [
     ./apps/zsh.nix
     ./apps/fastfetch.nix
-    ./apps/kitty.nix
+    ./home/kitty/kitty.nix
     #./apps/rofi.nix
   ####-----------------------####
   
