@@ -1,4 +1,5 @@
 { config, pkgs, ... }: {
+
   programs.kitty = {
     enable = true;
     # Reset existing mappings
@@ -23,32 +24,31 @@
       cursor_shape = "Underline";
       
       # Font
-      font_family = JetBrainsMono Nerd Font;
-      #font_size = config.var.theme.font-size;
-
+      font_family = "JetBrainsMono Nerd Font";
+      
       # Colors
-      background = "#" + #282828;
-      url_color = "#" + config.var.theme.colors.accent;
-      color0 = "#" + 45475A;
-      color8 = "#" + 585B70;
-      color1 = "#" + F38BA8;
-      color9 = "#" + F38BA8;
-      color2 = "#" + A6E3A1;
-      color10 = "#" + A6E3A1;
-      color3 = "#" + F9E2AF;
-      color11 = "#" + F9E2AF;
-      color4 = "#" + 89B4FA;
-      color12 = "#" + 89B4FA;
-      color5 = "#" + F5C2E7;
-      color13 = "#" + F5C2E7;
-      color6 = "#" + 94E2D5;
-      color14 = "#" + 94E2D5;
-      color7 = "#" + BAC2DE;
-      color15 = "#" + A6ADC8;
-      cursor = "#" + ;
-      cursor_text_color = "#" + 1E1E2E;
-      selection_foreground = "#" + 1E1E2E;
-      selection_background = "#" + F5E0DC;
+      background = "#" + "1e1e2e";
+      foreground = "#" + "cdd6f4";
+      color0 = "#" + "45475A";
+      color8 = "#" + "585B70";
+      color1 = "#" + "F38BA8";
+      color9 = "#" + "F38BA8";
+      color2 = "#" + "A6E3A1";
+      color10 = "#" + "A6E3A1";
+      color3 = "#" + "F9E2AF";
+      color11 = "#" + "F9E2AF";
+      color4 = "#" + "89B4FA";
+      color12 = "#" + "89B4FA";
+      color5 = "#" + "F5C2E7";
+      color13 = "#" + "F5C2E7";
+      color6 = "#" + "94E2D5";
+      color14 = "#" + "94E2D5";
+      color7 = "#" + "BAC2DE";
+      color15 = "#" + "A6ADC8";
+      cursor = "#" + "f5e0dc";
+      cursor_text_color = "#" + "1E1E2E";
+      selection_foreground = "#" + "1E1E2E";
+      selection_background = "#" + "F5E0DC";
     };
   };
 }
