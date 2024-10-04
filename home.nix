@@ -21,9 +21,9 @@
 
   ####----Splitting-Confs----####
   imports = [
-    ./apps/zsh.nix
-    ./apps/fastfetch.nix
-    ./home/kitty/kitty.nix
+    #./apps/zsh.nix
+    #./apps/fastfetch.nix
+    #./home/kitty/kitty.nix
     #./apps/rofi.nix
   ####-----------------------####
   
