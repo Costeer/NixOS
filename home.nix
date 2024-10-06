@@ -21,9 +21,9 @@
 
   ####----Splitting-Confs----####
   imports = [
-    #./apps/zsh.nix
+    ./apps/zsh.nix
     #./apps/fastfetch.nix
-    #./home/kitty/kitty.nix
+    ./home/kitty/kitty.nix
     #./apps/rofi.nix
   ####-----------------------####
   
@@ -38,6 +38,10 @@
       init.defaultBranch = "main";
     };
   };
+
+  catppuccin.enable = true;
+  programs.btop.catppuccin.enable = true;
+
 
   home.sessionVariables = {
   

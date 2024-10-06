@@ -17,12 +17,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ####
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ####
   };
 
   ###---OUT---####
@@ -37,15 +35,15 @@
         #home-manager.nixosModules.home-manager
 
 
-        #{
-        # if you use home-manager
-        #home-manager.users.pepperjack = {
-        #  imports = [
-        #    ./home.nix
-        #    catppuccin.homeManagerModules.catppuccin
-        #  ];
-        #};
-        #}
+        {
+          home-manager.users.costeer = {
+            imports = [
+              ./home.nix
+              catppuccin.homeManagerModules.catppuccin
+            ];
+          };
+        }
+        
         inputs.home-manager.nixosModules.default
         
         nix-flatpak.nixosModules.nix-flatpak

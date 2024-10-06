@@ -1,6 +1,6 @@
 {
   networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
+  # systemd.services.NetworkManager-wait-online.enable = false;
   networking.hostName = "nixos"; # Define your hostname.
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

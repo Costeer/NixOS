@@ -30,8 +30,14 @@
     bibata-cursors-translucent
     hyprpaper
     nwg-look
+    #magnetic-catppuccin-gtk
+    #catppuccin-papirus-folders
+    catppuccin-grub
     adw-gtk3
     gnome-extension-manager
+    gnome-tweaks
+    gnome3.gnome-tweaks
+    gdm-settings
     #(pkgs.waybar.overrideAttrs (oldAttrs: {
     #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     # })
@@ -60,13 +66,13 @@
     gnome-calculator
     nautilus
     hyprpicker
+    freetube
     vesktop
     #kdePackages.kcolorpicker
     mangohud
     #gamescope
     gnome-tweaks
     localsend
-    jetbrains-mono
     inputs.zen-browser.packages."${system}".specific
     kitty
     alacritty
