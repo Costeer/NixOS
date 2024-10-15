@@ -34,14 +34,21 @@
     enable = true;
     userName = "Costeer";
     userEmail = "costeer@protonmail.com";
+    
     extraConfig = {
       init.defaultBranch = "main";
     };
   };
 
-  catppuccin.enable = true;
-  programs.btop.catppuccin.enable = true;
+  programs.btop = {
+    #enable = true;
+    catppuccin.enable = true;
+  };
 
+  
+  catppuccin.flavor = "mocha";
+  
+  catppuccin.enable = true;
 
   home.sessionVariables = {
   

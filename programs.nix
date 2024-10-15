@@ -4,8 +4,30 @@
   environment.systemPackages = with pkgs; [
   #----------------------Programs------------------------------------#
     
+    
+    #gnome-bluetooth
+    #libgtop
+    #bluez
+    #bluez-tools
+    #grimblast
+    #gpu-screen-recorder
+    #hyprpicker
+    #networkmanager
+    #matugen
+    #wl-clipboard
+    #swww
+    #dart-sass
+    #brightnessctl
+
+    r2modman
+    appimage-run
+    inputs.umu.packages.${pkgs.system}.umu
+
     #---Terminal-Stuff---#
     vim 
+    cpio
+    meson
+    cmake
     eza
     zoxide
     wget
@@ -30,13 +52,10 @@
     bibata-cursors-translucent
     hyprpaper
     nwg-look
-    #magnetic-catppuccin-gtk
-    #catppuccin-papirus-folders
     catppuccin-grub
     adw-gtk3
     gnome-extension-manager
     gnome-tweaks
-    gnome3.gnome-tweaks
     gdm-settings
     #(pkgs.waybar.overrideAttrs (oldAttrs: {
     #   mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
@@ -61,16 +80,14 @@
     gnome-disk-utility
     gnome-software
     gnome-text-editor
+    gamescope
     gedit
     obs-studio
     gnome-calculator
     nautilus
     hyprpicker
     freetube
-    vesktop
-    #kdePackages.kcolorpicker
     mangohud
-    #gamescope
     gnome-tweaks
     localsend
     inputs.zen-browser.packages."${system}".specific
@@ -79,14 +96,17 @@
     obsidian
     krita
     lutris-unwrapped
+    ungoogled-chromium
     vlc
     fragments
     blender
-    #virtualboxWithExtpack
     spotify
   ];
 
  #-P.T.N.E.---------------------Programs-That-Need-Enabeling------------------------------------#
+
+  programs.gnome-disks.enable = true;
+  services.udisks2.enable = true;
 
   # Cosmic
   #services.desktopManager.cosmic.enable = true;
